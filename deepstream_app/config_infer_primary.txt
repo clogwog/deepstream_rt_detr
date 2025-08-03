@@ -19,13 +19,8 @@ cluster-mode=2
 maintain-aspect-ratio=1
 parse-bbox-func-name=NvDsInferParseCustomRFDETR
 custom-lib-path=libnvdsinfer_custom_impl_rfdetr.so
-infer-dims=3;640;640;0
+infer-dims=3;640;640
 model-color-format=0
-model-engine-file-size=4294967296
-workspace-size=2048
-int8-calib-file=
-uff-input-blob-name=
-onnx-file=rf-detr-base.onnx
 
 #
 # Model Input Configuration
