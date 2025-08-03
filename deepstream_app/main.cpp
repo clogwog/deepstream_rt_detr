@@ -218,6 +218,7 @@ create_pipeline(AppCtx *app_ctx)
                  "batch-size", 1, "batched-push-timeout", 4000000, NULL);
     g_object_set(G_OBJECT(app_ctx->pgie), 
                  "config-file-path", "config_infer_primary.txt", NULL);
+    g_print("Using config file: config_infer_primary.txt\n");
     g_object_set(G_OBJECT(app_ctx->sink), "sync", FALSE, NULL);
     
     /* Add bus watch */
