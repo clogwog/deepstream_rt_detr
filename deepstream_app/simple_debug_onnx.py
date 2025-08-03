@@ -108,7 +108,7 @@ def check_tensorrt_simple():
         print("Error checking TensorRT library: {}".format(e))
 
 if __name__ == "__main__":
-    model_path = "../rf-detr-base.onnx"
+    model_path = "rf-detr-base.onnx"
     
     print("Simple ONNX Model Debug Tool")
     print("=" * 50)
