@@ -23,6 +23,11 @@ model-color-format=0
 
 network-mode=2
 onnx-file=rf-detr-base.onnx
+plugin-config=disable-plugin-creation
+tensor-format=0
+network-input-shape=input:1x3x640x640
+network-input-format=0
+network-input-type=0
 
 #
 # Model Input Configuration
