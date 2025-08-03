@@ -6,7 +6,7 @@
 [property]
 gpu-id=0
 net-scale-factor=0.0039215697906911373
-model-file=../rf-detr-base.onnx
+model-file=rf-detr-base.onnx
 model-engine-file=rf-detr-base.onnx_b1_gpu0_fp32.engine
 labelfile-path=labels.txt
 batch-size=1
