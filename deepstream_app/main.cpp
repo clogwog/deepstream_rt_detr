@@ -46,9 +46,10 @@ static const gchar* coco_class_names[PGIE_DETECTED_CLASS_NUM] = {
 };
 
 /* COCO-91 to COCO-80 mapping (same as Python version) */
-static const gint coco_91_to_80_map[91] = {
+static const gint coco_91_to_80_map[] = {
     -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -1, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, -1, 24, 25, -1, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, -1, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, -1, -1, 60, -1, -1, -1, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, -1, 73, 74, 75, 76, 77, 78, 79, -1
 };
+static const int COCO_91_TO_80_MAP_SIZE = sizeof(coco_91_to_80_map) / sizeof(coco_91_to_80_map[0]);
 
 /* Structure to hold application data */
 typedef struct {
@@ -69,7 +70,7 @@ typedef struct {
 
 /* Convert COCO-91 class index to COCO-80 class index */
 static gint map_coco_91_to_80(gint coco_91_idx) {
-    if (coco_91_idx >= 0 && coco_91_idx < 91) {
+    if (coco_91_idx >= 0 && coco_91_idx < COCO_91_TO_80_MAP_SIZE) {
         return coco_91_to_80_map[coco_91_idx];
     }
     return -1;
