@@ -1,0 +1,43 @@
+#
+# RF-DETR ONNX Model Configuration for nvinfer
+# This configuration file tells DeepStream how to load and use the RF-DETR ONNX model
+#
+
+[property]
+gpu-id=0
+net-scale-factor=0.0039215697906911373
+model-file=../rf-detr-base.onnx
+model-engine-file=../rf-detr-base.onnx_b1_gpu0_fp16.engine
+labelfile-path=labels.txt
+batch-size=1
+network-mode=2
+num-detected-classes=91
+interval=0
+gie-unique-id=1
+output-blob-names=dets;labels
+cluster-mode=2
+maintain-aspect-ratio=1
+parse-bbox-func-name=NvDsInferParseCustomRFDETR
+custom-lib-path=libnvdsinfer_custom_impl_rfdetr.so
+
+#
+# Model Input Configuration
+#
+[class-attrs-all]
+nms-iou-threshold=0.7
+pre-cluster-threshold=0.5
+topk=300
+
+#
+# Network Input Parameters
+#
+network-type=0
+infer-dims=3;640;640
+maintain-aspect-ratio=1
+symmetric-padding=1
+
+#
+# Processing parameters
+#
+process-mode=1
+model-color-format=0
