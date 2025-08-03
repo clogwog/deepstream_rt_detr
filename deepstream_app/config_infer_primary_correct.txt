@@ -19,7 +19,7 @@ parse-bbox-func-name=NvDsInferParseCustomRFDETR
 custom-lib-path=libnvdsinfer_custom_impl_rfdetr.so
 infer-dims=3;640;640
 model-color-format=0
-force-implicit-batch-dim=1
+
 network-mode=2
 
 #
