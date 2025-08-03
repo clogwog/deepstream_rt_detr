@@ -23,7 +23,6 @@ model-color-format=0
 # Essential TensorRT settings
 network-mode=2
 onnx-file=rf-detr-base.onnx
-plugin-config=disable-plugin-creation
 
 [class-attrs-all]
 nms-iou-threshold=0.7
