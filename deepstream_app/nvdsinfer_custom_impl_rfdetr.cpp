@@ -75,7 +75,7 @@ extern "C" bool NvDsInferParseCustomRFDETR(
         return false;
     }
     
-    int batch_size = detsLayer.inferDims.d[0];
+    //int batch_size = detsLayer.inferDims.d[0];
     int num_queries = detsLayer.inferDims.d[1];
     int bbox_dims = detsLayer.inferDims.d[2];  // Should be 4 (cx, cy, w, h)
     int num_classes = labelsLayer.inferDims.d[2];  // Should be 91 for COCO-91
