@@ -47,7 +47,7 @@ static const gchar* coco_class_names[PGIE_DETECTED_CLASS_NUM] = {
 
 /* COCO-91 to COCO-80 mapping (same as Python version) */
 static const gint coco_91_to_80_map[91] = {
-    -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -1, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, -1, 24, 25, -1, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, -1, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, -1, -1, 60, -1, -1, -1, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, -1, 73, 74, 75, 76, 77, 78, 79
+    -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -1, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, -1, 24, 25, -1, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, -1, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, -1, -1, 60, -1, -1, -1, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, -1, 73, 74, 75, 76, 77, 78, 79, -1
 };
 
 /* Structure to hold application data */
@@ -132,7 +132,7 @@ osd_sink_pad_buffer_probe(GstPad *pad, GstPadProbeInfo *info, gpointer u_data)
         /* Set text properties */
         txt_params->x_offset = 10;
         txt_params->y_offset = 12;
-        txt_params->font_params.font_name = "Serif";
+        txt_params->font_params.font_name = g_strdup("Serif");
         txt_params->font_params.font_size = 14;
         txt_params->font_params.font_color.red = 1.0;
         txt_params->font_params.font_color.green = 1.0;
