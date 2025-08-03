@@ -8,38 +8,38 @@ import numpy as np
 
 def inspect_onnx_model(model_path):
     """Inspect ONNX model structure"""
-    print(f"Loading ONNX model: {model_path}")
+    print("Loading ONNX model: {}".format(model_path))
     
     try:
         # Load the model
         model = onnx.load(model_path)
         
-        print(f"\n=== ONNX Model Info ===")
-        print(f"Model IR version: {model.ir_version}")
-        print(f"Opset version: {model.opset_import[0].version}")
-        print(f"Producer: {model.producer_name}")
+        print("\n=== ONNX Model Info ===")
+        print("Model IR version: {}".format(model.ir_version))
+        print("Opset version: {}".format(model.opset_import[0].version))
+        print("Producer: {}".format(model.producer_name))
         
-        print(f"\n=== Inputs ===")
+        print("\n=== Inputs ===")
         for i, input_info in enumerate(model.graph.input):
-            print(f"Input {i}: {input_info.name}")
-            print(f"  Shape: {[dim.dim_value for dim in input_info.type.tensor_type.shape.dim]}")
-            print(f"  Type: {input_info.type.tensor_type.elem_type}")
+            print("Input {}: {}".format(i, input_info.name))
+            print("  Shape: {}".format([dim.dim_value for dim in input_info.type.tensor_type.shape.dim]))
+            print("  Type: {}".format(input_info.type.tensor_type.elem_type))
         
-        print(f"\n=== Outputs ===")
+        print("\n=== Outputs ===")
         for i, output_info in enumerate(model.graph.output):
-            print(f"Output {i}: {output_info.name}")
-            print(f"  Shape: {[dim.dim_value for dim in output_info.type.tensor_type.shape.dim]}")
-            print(f"  Type: {output_info.type.tensor_type.elem_type}")
+            print("Output {}: {}".format(i, output_info.name))
+            print("  Shape: {}".format([dim.dim_value for dim in output_info.type.tensor_type.shape.dim]))
+            print("  Type: {}".format(output_info.type.tensor_type.elem_type))
         
-        print(f"\n=== Model Size ===")
+        print("\n=== Model Size ===")
         import os
         size_mb = os.path.getsize(model_path) / (1024 * 1024)
-        print(f"Model file size: {size_mb:.2f} MB")
+        print("Model file size: {:.2f} MB".format(size_mb))
         
         return True
         
     except Exception as e:
-        print(f"Error loading ONNX model: {e}")
+        print("Error loading ONNX model: {}".format(e))
         return False
 
 if __name__ == "__main__":
@@ -48,10 +48,10 @@ if __name__ == "__main__":
     model_path = "../rf-detr-base.onnx"
     
     if not os.path.exists(model_path):
-        print(f"Model not found at: {model_path}")
+        print("Model not found at: {}".format(model_path))
         print("Available files:")
         for f in os.listdir("."):
             if f.endswith(".onnx"):
-                print(f"  {f}")
+                print("  {}".format(f))
     else:
         inspect_onnx_model(model_path) 
