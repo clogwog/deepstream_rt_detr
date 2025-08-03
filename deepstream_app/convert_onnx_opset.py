@@ -15,15 +15,15 @@ def convert_onnx_opset():
     # Check if onnx-simplifier is available
     try:
         import onnx
-        print("✓ ONNX package available")
+        print("OK: ONNX package available")
     except ImportError:
-        print("⚠ ONNX package not available, trying pip install...")
+        print("Warning: ONNX package not available, trying pip install...")
         try:
             subprocess.run([sys.executable, "-m", "pip", "install", "onnx"], check=True)
             import onnx
-            print("✓ ONNX package installed")
+            print("OK: ONNX package installed")
         except Exception as e:
-            print("✗ Failed to install ONNX: {}".format(e))
+            print("Failed to install ONNX: {}".format(e))
             return False
     
     # Load and convert the model
@@ -39,15 +39,15 @@ def convert_onnx_opset():
         
         try:
             converted_model = version_converter.convert_version(model, 11)
-            print("✓ Successfully converted to opset 11")
+            print("OK: Successfully converted to opset 11")
         except Exception as e:
-            print("⚠ Version conversion failed: {}".format(e))
+            print("Warning: Version conversion failed: {}".format(e))
             print("Trying opset 12...")
             try:
                 converted_model = version_converter.convert_version(model, 12)
-                print("✓ Successfully converted to opset 12")
+                print("OK: Successfully converted to opset 12")
             except Exception as e2:
-                print("✗ Both opset 11 and 12 conversion failed")
+                print("Failed: Both opset 11 and 12 conversion failed")
                 print("Error 11: {}".format(e))
                 print("Error 12: {}".format(e2))
                 return False
@@ -55,7 +55,7 @@ def convert_onnx_opset():
         # Save the converted model
         output_path = "../rf-detr-base-opset11.onnx"
         onnx.save(converted_model, output_path)
-        print("✓ Saved converted model to: {}".format(output_path))
+        print("OK: Saved converted model to: {}".format(output_path))
         
         # Check file size
         size_mb = os.path.getsize(output_path) / (1024 * 1024)
@@ -64,7 +64,7 @@ def convert_onnx_opset():
         return True
         
     except Exception as e:
-        print("✗ Error during conversion: {}".format(e))
+        print("Error during conversion: {}".format(e))
         return False
 
 if __name__ == "__main__":
