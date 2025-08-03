@@ -1,0 +1,31 @@
+#
+# RF-DETR Configuration with Single Output
+# Using the most common output name
+#
+
+[property]
+gpu-id=0
+net-scale-factor=0.0039215697906911373
+model-file=../rf-detr-base.onnx
+labelfile-path=labels.txt
+batch-size=1
+num-detected-classes=80
+interval=0
+gie-unique-id=1
+output-blob-names=output_0
+cluster-mode=2
+maintain-aspect-ratio=1
+parse-bbox-func-name=NvDsInferParseCustomRFDETR
+custom-lib-path=libnvdsinfer_custom_impl_rfdetr.so
+infer-dims=3;640;640
+model-color-format=0
+force-implicit-batch-dim=1
+network-mode=2
+
+#
+# Model Input Configuration
+#
+[class-attrs-all]
+nms-iou-threshold=0.7
+pre-cluster-threshold=0.5
+topk=300 
