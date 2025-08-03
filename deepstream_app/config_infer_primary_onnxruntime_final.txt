@@ -1,6 +1,6 @@
 #
-# RF-DETR Simple Configuration
-# Basic TensorRT configuration without complex parameters
+# RF-DETR ONNX Runtime Final Configuration
+# Uses ONNX Runtime backend to avoid LayerNormalization issues
 #
 
 [property]
@@ -19,9 +19,9 @@ custom-lib-path=libnvdsinfer_custom_impl_rfdetr.so
 infer-dims=3;640;640
 model-color-format=0
 
-# Basic TensorRT settings
+# ONNX Runtime settings
 network-mode=2
-onnx-file=rf-detr-base.onnx
+backend=onnxruntime
 
 [class-attrs-all]
 nms-iou-threshold=0.7
