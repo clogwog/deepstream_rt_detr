@@ -61,7 +61,6 @@ typedef struct {
     GstElement *pgie;
     GstElement *nvvidconv;
     GstElement *nvosd;
-    GstElement *transform;
     GstElement *sink;
     
     GMainLoop *loop;
@@ -204,12 +203,11 @@ create_pipeline(AppCtx *app_ctx)
     app_ctx->pgie = gst_element_factory_make("nvinfer", "primary-nvinference-engine");
     app_ctx->nvvidconv = gst_element_factory_make("nvvideoconvert", "nvvideo-converter");
     app_ctx->nvosd = gst_element_factory_make("nvdsosd", "nv-onscreendisplay");
-    app_ctx->transform = gst_element_factory_make("nvegltransform", "nvegl-transform");
-    app_ctx->sink = gst_element_factory_make("nveglglessink", "nvvideo-renderer");
+    app_ctx->sink = gst_element_factory_make("nvoverlaysink", "nvvideo-renderer");
     
     if (!app_ctx->pipeline || !app_ctx->source || !app_ctx->streammux || 
         !app_ctx->pgie || !app_ctx->nvvidconv || !app_ctx->nvosd || 
-        !app_ctx->transform || !app_ctx->sink) {
+        !app_ctx->sink) {
         g_printerr("One or more elements could not be created. Exiting.\n");
         return FALSE;
     }
@@ -230,8 +228,7 @@ create_pipeline(AppCtx *app_ctx)
     /* Add elements to pipeline */
     gst_bin_add_many(GST_BIN(app_ctx->pipeline),
                      app_ctx->source, app_ctx->streammux, app_ctx->pgie,
-                     app_ctx->nvvidconv, app_ctx->nvosd, app_ctx->transform,
-                     app_ctx->sink, NULL);
+                     app_ctx->nvvidconv, app_ctx->nvosd, app_ctx->sink, NULL);
     
     /* Link elements */
     GstPad *sinkpad, *srcpad;
@@ -260,7 +257,7 @@ create_pipeline(AppCtx *app_ctx)
     /* Link the rest of the pipeline */
     if (!gst_element_link_many(app_ctx->streammux, app_ctx->pgie,
                                app_ctx->nvvidconv, app_ctx->nvosd,
-                               app_ctx->transform, app_ctx->sink, NULL)) {
+                               app_ctx->sink, NULL)) {
         g_printerr("Elements could not be linked. Exiting.\n");
         return FALSE;
     }
