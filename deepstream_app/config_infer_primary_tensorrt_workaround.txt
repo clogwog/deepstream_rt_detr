@@ -1,6 +1,6 @@
 #
-# RF-DETR ONNX Runtime Configuration
-# Uses ONNX Runtime instead of TensorRT to avoid LayerNormalization issues
+# RF-DETR TensorRT Workaround Configuration
+# Attempts to work around LayerNormalization issues
 #
 
 [property]
@@ -19,9 +19,10 @@ custom-lib-path=libnvdsinfer_custom_impl_rfdetr.so
 infer-dims=3;640;640
 model-color-format=0
 
-# TensorRT configuration
+# TensorRT settings with workarounds
 network-mode=2
 onnx-file=rf-detr-base.onnx
+model-engine-file=rf-detr-base.onnx_b1_gpu0_fp32.engine
 
 [class-attrs-all]
 nms-iou-threshold=0.7
